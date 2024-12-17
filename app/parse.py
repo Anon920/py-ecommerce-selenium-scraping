@@ -98,7 +98,7 @@ def get_products_from_page(url: str) -> List[Product]:
     driver = SeleniumBrowser().get_driver()
     driver.get(url)
     logging.info(f"Getting products from page {url}")
-    time.sleep(5)
+    WebDriverWait(driver, 10)
     cookies_btn = driver.find_elements(By.CSS_SELECTOR, "button.acceptCookies")
     if cookies_btn:
         logging.info("Accepting cookies")
@@ -123,7 +123,7 @@ def get_products_from_page(url: str) -> List[Product]:
     return get_products(driver)
 
 
-def save_products_to_csv(products: list[Product], filename: str) -> None:
+def save_products_to_csv(products: List[Product], filename: str) -> None:
     """
     Збереження списку продуктів у CSV-файл.
     """
